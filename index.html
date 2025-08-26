@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>PRIMERA PAG</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      color: #f1c40f;
+      overflow-x: hidden;
+      background: #000;
+    }
+
+    /* OBJETOS QUE CAEN */
+    .caida {
+      position: fixed;
+      top: -50px;
+      font-size: 2rem;
+      user-select: none;
+      pointer-events: none;
+      animation: caer linear forwards;
+    }
+
+    @keyframes caer {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.7;
+      }
+    }
+
+    /* MENÚ INFERIOR */
+    .sidebar {
+      width: 100%;
+      height: 70px;
+      background: #000;
+      padding: 10px 20px;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    .sidebar nav {
+      display: flex;
+      flex-direction: row;
+      gap: 20px;
+    }
+
+    .sidebar nav a {
+      color: #f1c40f;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+      font-weight: bold;
+      text-shadow: 0 0 5px #f1c40f, 0 0 10px #f39c12;
+    }
+
+    .sidebar nav a:hover {
+      background: rgba(241,196,15,0.2);
+    }
+
+    .sidebar nav a:active {
+      transform: scale(0.9);
+      background: rgba(241,196,15,0.3);
+    }
+
+    .ripple {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: rgba(241,196,15,0.5);
+      border-radius: 50%;
+      transform: scale(0);
+      animation: ripple 0.6s linear;
+      pointer-events: none;
+    }
+
+    @keyframes ripple {
+      to {
+        transform: scale(4);
+        opacity: 0;
+      }
+    }
+
+    /* CONTENIDO */
+    .contenido {
+      flex: 1;
+      padding: 40px;
+      overflow-y: auto;
+      padding-bottom: 100px;
+      position: relative;
+      z-index: 5;
+    }
+
+    .seccion {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 110px);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .seccion.activa {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      position: relative;
+    }
+
+    h1, h2 {
+      color: #f1c40f;
+      text-shadow: 0 0 10px #f1c40f, 0 0 20px #f39c12;
+    }
+
+    p {
+      color: #ddd;
+      text-shadow: 0 0 5px #f1c40f33;
+    }
+
+    /* Marca de agua */
+    .marca-agua {
+      position: fixed;
+      top: 10px;
+      right: 20px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #f1c40f;
+      text-shadow: 0 0 8px #f1c40f, 0 0 15px #f39c12;
+      opacity: 0.9;
+      z-index: 20;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    /* Botón Música */
+    .btn-musica {
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background: #f1c40f;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+      font-size: 24px;
+      color: #000;
+      box-shadow: 0 0 10px #f1c40f, 0 0 20px #f39c12;
+      z-index: 30;
+      transition: transform 0.2s ease;
+    }
+
+    .btn-musica:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <!-- Marca de agua -->
+  <div class="marca-agua">RataBonez</div>
+
+  <!-- Botón Play/Pause -->
+  <button class="btn-musica" onclick="toggleMusica()">▶</button>
+
+  <!-- Audio -->
+  <audio id="musica" loop>
+    <source src="https://cdn.discordapp.com/attachments/1407862522962514048/1409684567316631612/KRIS_R_-_ELECTROLIBONBON_VIDEO_OFICIAL_JAeERhNDhkw.mp3?ex=68ae468f&is=68acf50f&hm=7a109127466b9c36f0dc7853f81147995d466fe79768064b94f87a60eb4aaabf&" type="audio/mpeg">
+  </audio>
+
+  <main class="contenido">
+    <section id="inicio" class="seccion activa">
+      <h1>Inicio</h1>
+      <p>Bienvenido a la Pagina de Gargola un poco IA jeje</p>
+    </section>
+
+    <section id="sobre" class="seccion">
+      <h1>Sobre mí</h1>
+      <p>Bueno soy Un Chico de 16 Años estoy aprendiendo varios lenguajes de Prg como, HTML, CSS, LUA por el momento esos tengo mi servidor de Mta que es Montañeros Roleplay y hay Vamos Gente.</p>
+    </section>
+
+    <section id="contacto" class="seccion">
+      <h1>Contacto</h1>
+      <p>Escríbeme: <b>Si me quieres Transferir Dinero mi Nequi es 3018671902, Jajaj mentiras ese es mi numero de Wpp pero ps si quiere enviarse alguito se le quiere.</b></p>
+    </section>
+
+    <section id="Notas" class="seccion">
+      <h1>Notas</h1>
+      <p>Hoy Medio Se aprendio HTML.</p>
+    </section>
+      </main>
+
+  <aside class="sidebar">
+    <nav>
+      <a href="#" onclick="mostrarSeccion('inicio')">Inicio</a>
+      <a href="#" onclick="mostrarSeccion('sobre')">Sobre mí</a>
+      <a href="#" onclick="mostrarSeccion('contacto')">Contacto</a>
+      <a href="#" onclick="mostrarSeccion('Notas')">Notas</a>
+
+    </nav>
+  </aside>
+
+  <script>
+    function mostrarSeccion(id) {
+      document.querySelectorAll('.seccion').forEach(sec => {
+        sec.classList.remove('activa');
+      });
+      document.getElementById(id).classList.add('activa');
+    }
+
+    // Ripple efecto
+    document.querySelectorAll('.sidebar nav a').forEach(boton => {
+      boton.addEventListener('click', function(e) {
+        let ripple = document.createElement("span");
+        ripple.classList.add("ripple");
+        this.appendChild(ripple);
+
+        let x = e.clientX - e.target.getBoundingClientRect().left;
+        let y = e.clientY - e.target.getBoundingClientRect().top;
+        ripple.style.left = x + "px";
+        ripple.style.top = y + "px";
+
+        setTimeout(() => {
+          ripple.remove();
+        }, 600);
+      });
+    });
+
+    // Objetos que caen
+    const objetos = ["💵","💵","💵","💵","💵","💵","💵","💵","💵","💵","💵","💵","💵"]; 
+    function crearCaida() {
+      for (let i = 0; i < 5; i++) {
+        let obj = document.createElement("div");
+        obj.classList.add("caida");
+        obj.innerText = objetos[Math.floor(Math.random() * objetos.length)];
+        obj.style.left = Math.random() * 100 + "vw";
+        obj.style.animationDuration = (2 + Math.random() * 2) + "s";
+        obj.style.fontSize = (20 + Math.random() * 35) + "px";
+        document.body.appendChild(obj);
+
+        setTimeout(() => {
+          obj.remove();
+        }, 4000);
+      }
+    }
+
+    setInterval(crearCaida, 400);
+
+    // Música
+    let musica = document.getElementById("musica");
+    let btn = document.querySelector(".btn-musica");
+    let reproduciendo = false;
+
+    function toggleMusica() {
+      if (!reproduciendo) {
+        musica.play();
+        btn.innerHTML = "⏸"; // Cambia a pausa
+        reproduciendo = true;
+      } else {
+        musica.pause();
+        btn.innerHTML = "▶"; // Cambia a play
+        reproduciendo = false;
+      }
+    }
+  </script>
+</body>
+</html>
